@@ -1,0 +1,181 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+body, #root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+  margin: 0.5rem;
+  font-family: $font-family;
+}
+
+main {
+  flex: 1; 
+  padding: 1rem;
+  background-color: #f9fafb; 
+}
+
+header {
+  text-align: center;
+}
+
+.focus-visible {
+  @include focus-ring; 
+}
+
+.search {
+  width: 100%;
+  padding: 1rem;
+  background-color:#f9fafb;
+
+  &__label {
+    display:block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: $text;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid $border;
+    border-radius: 6px;
+    color: $text;
+    background-color: $bg;
+
+    &:focus-visible {
+      @include focus-ring;
+    }
+  }
+}
+
+.book-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  padding: 1.5rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.book-card {
+  background-color: $bg;
+  border: 1px solid $border;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-2px);
+    @include focus-ring;
+  }
+
+  &__image {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $text;   
+    height: 3rem;       
+  }
+
+  &__author {
+    font-size: 0.95rem;
+    color: $muted;
+    
+  }
+
+  &__category {
+    font-weight: bold;
+    color: $primary;
+  }
+
+  &__status {
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    &--available {
+      color: $success;
+    }
+
+    &--unavailable {
+      color: $error;
+    }
+  }
+}
+
+.footer {
+  padding: 1rem;
+  text-align: center;
+  background-color: $primary;
+  color: $bg;
+  margin-top: auto;
+
+}
+
+.book-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  font-family: $font-family;
+
+  &__image {
+    max-width: 100%;
+    height: 220px;
+    border-radius: 6px;
+  }
+
+  &__status {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+
+    &--available { color: $success; }
+    &--unavailable { color: $error; }
+  }
+
+  &__back-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: $primary;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      color: $primary-hover;
+      text-decoration: underline;
+      @include focus-ring;
+    }
+  }
+
+  @media (max-width: 900px) {
+  align-items: center; 
+  gap: 1rem;           
+}
+@media (max-width: 600px) {
+  align-items: center; 
+  gap: 1rem;           
+}
+}
+.book-list{
+  list-style-type: none;
+}
